@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎬前製部4月報🎈| MOONSHINE 2026 APR</title>
+  <title>前製部管理儀表板 | MOONSHINE 2026 APR</title>
   <style>
     /* ════════════════════════════════════════
        CSS 變數
@@ -34,7 +34,7 @@
       line-height: 1.6;
       display: flex;
       flex-direction: column;
-      height: 100dvh;        /* dynamic viewport height，手機更精準 */
+      height: 100dvh;        
       overflow: hidden;
     }
 
@@ -182,7 +182,7 @@
 
     .split-left {
       width: 340px;
-      min-width: 160px;
+      min-width: 260px;
       max-width: 70%;
       flex-shrink: 0;
       overflow-y: auto;
@@ -224,7 +224,7 @@
     /* ════════════════════════════════════════
        手機 RWD — 自動切換為上下堆疊
     ════════════════════════════════════════ */
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       body { height: auto; overflow: auto; }
       .main { overflow: visible; height: auto; }
       .tab-panel.active { display: block; height: auto; overflow: visible; }
@@ -286,6 +286,7 @@
     .bar-r { background: var(--rose); }
 
     .card.risk-card { background: var(--rose-l); border-color: var(--rose-m); }
+    .overview-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 18px; }
     .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .risk-col h4 { font-size: 13px; font-weight: 700; color: #9f1239; margin-bottom: 7px; }
     .risk-item { display: flex; gap: 7px; font-size: 12px; color: #be123c; line-height: 1.6; margin-bottom: 8px; }
@@ -303,7 +304,7 @@
     .hl-item p  { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
     /* ════════════════════════════════════════
-       Charts
+       Charts (等比縮放圓餅圖)
     ════════════════════════════════════════ */
     .chart-wrap { display: grid; grid-template-columns: minmax(80px, 1fr) 1.2fr; align-items: center; gap: 16px; }
     .pie, .donut { width: 100%; max-width: 160px; aspect-ratio: 1 / 1; border-radius: 50%; }
@@ -386,14 +387,13 @@
     .modal-projects  { font-size: 12px; color: var(--muted); margin-bottom: 14px; padding: 9px 13px; background: #f8fafc; border-radius: 7px; border: 1px dashed var(--border); font-weight: 600; }
 
     /* ════════════════════════════════════════
-       Scrollbar
+       Scrollbar & 診斷按鈕
     ════════════════════════════════════════ */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     
-    /* 診斷按鈕樣式 */
     .diag-btn { display: inline-block; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; text-decoration: none; margin-top: 12px; cursor: pointer; border: 1px solid; }
     .diag-btn-primary { background: var(--indigo); color: white; border-color: var(--indigo); }
     .diag-btn-secondary { background: white; color: var(--text); border-color: #cbd5e1; }
@@ -407,7 +407,6 @@
       <div class="sub">數據更新：2026/04/30 18:00</div>
     </div>
     <div class="header-right">
-      <!-- 內網資料夾複製按鈕群 -->
       <div style="display: flex; gap: 6px;">
         <button class="folder-btn" data-path="U:\_PC\Siya\部門\2. 設計\2026_設計概念組月報\4月" onclick="copyPathToClipboard(this)" title="點擊複製路徑">
           📋 <span>概念資料夾</span>
@@ -438,25 +437,16 @@
 
   <div class="main">
 
+    <!-- TAB 1：總覽與分析 -->
     <div id="tab-overview" class="tab-panel active">
       <div class="overview-scroll">
         <div class="overview-grid">
-          
           <div class="card">
             <div class="card-title"><span class="bar bar-i"></span>本月關鍵分析</div>
             <div class="hl-list">
-              <div class="hl-item i">
-                <h3 style="color:#4338ca">新血加入</h3>
-                <p>士堯《Rog20thLineUp》在產品案中逐漸熟悉專案流程，苡安《故宮玉器》大量PS修圖熟悉工具使用。</p>
-              </div>
-              <div class="hl-item a">
-                <h3 style="color:#b45309">跨卡協作與救援機制</h3>
-                <p>《Rog20thLineUp》芝翊、士堯、婕㚬、家綺呈現高度互助分工。</p>
-              </div>
-              <div class="hl-item e">
-                <h3 style="color:#047857">⭐ MCC 重責大任 ⭐</h3>
-                <p>劭謙導演順利完成MCC的演講，創建了專案分析系統，成為Vibe Coding能手！</p>
-              </div>
+              <div class="hl-item i"><h3 style="color:#4338ca">新血加入</h3><p>士堯《Rog20thLineUp》在產品案中逐漸熟悉專案流程，苡安《故宮玉器》大量PS修圖熟悉工具使用。</p></div>
+              <div class="hl-item a"><h3 style="color:#b45309">跨卡協作與救援機制</h3><p>《Rog20thLineUp》芝翊、士堯、婕㚬、家綺呈現高度互助分工。</p></div>
+              <div class="hl-item e"><h3 style="color:#047857">⭐ MCC 重責大任 ⭐</h3><p>劭謙導演順利完成MCC的演講，創建了專案分析系統，成為Vibe Coding能手！</p></div>
             </div>
           </div>
 
@@ -475,11 +465,11 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
+    <!-- TAB 2：設計概念組 -->
     <div id="tab-design" class="tab-panel">
       <div class="split-container" id="split-design">
         <div class="split-left" id="split-design-left">
@@ -521,6 +511,7 @@
       </div>
     </div>
 
+    <!-- TAB 3：導演組 -->
     <div id="tab-director" class="tab-panel">
       <div class="split-container" id="split-director">
         <div class="split-left" id="split-director-left">
@@ -568,6 +559,7 @@
 
   </div>
   
+  <!-- 彈出視窗 (Modal) -->
   <div id="info-modal" class="modal-overlay" onclick="closeModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal()">×</button>
@@ -591,15 +583,14 @@
   </div>
 
   <script>
-    // ==========================================================================
-    // 複製路徑功能
-    // ==========================================================================
+    // ════════════════════════════════════════
+    // 複製資料夾路徑功能
+    // ════════════════════════════════════════
     function copyPathToClipboard(btnElement) {
         const path = btnElement.getAttribute('data-path');
         const spanElement = btnElement.querySelector('span');
         const originalText = spanElement.innerText;
         
-        // 建立一個隱藏的 textarea 來執行複製 (相容性最佳的做法)
         const textArea = document.createElement("textarea");
         textArea.value = path;
         document.body.appendChild(textArea);
@@ -616,11 +607,10 @@
         document.body.removeChild(textArea);
     }
 
-    // ==========================================================================
+    // ════════════════════════════════════════
     // API 串接與資料渲染邏輯
-    // ==========================================================================
-    
-    // ⚠️ 這裡填入你的 Google Apps Script 網址
+    // ════════════════════════════════════════
+    // 🔴 🔴 🔴 請將下方的引號內容，替換成你新部署好的 Google Apps Script 網址！ 🔴 🔴 🔴
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwRf9DhrDqvkHFcwPi_Z5-IUfnXu1HE2E0YajU_SblcW2HYh5QHNvIWZ7n5J8cB1cPa/exec";
 
     const loadedStatus = {
@@ -632,6 +622,13 @@
 
     async function fetchNotionData(group, containerId) {
         const container = document.getElementById(containerId);
+        
+        // 防呆機制：如果忘記填寫 URL
+        if(GAS_API_URL === "請將你部署好的網址貼在這裡" || GAS_API_URL === "") {
+            showErrorPanel(container, group, "你還沒有設定 GAS_API_URL！請在 HTML 程式碼底部設定你的 API 網址。");
+            return;
+        }
+
         container.innerHTML = '<div style="text-align: center; color: var(--muted); padding: 40px;">⏳ 正在從 Notion 同步最新專案...</div>';
 
         try {
@@ -653,7 +650,6 @@
                 return;
             }
 
-            // 1. 將回傳的資料依照「人員/負責人」或「導演」進行分組
             const groupedData = {};
 
             data.results.forEach(item => {
@@ -683,12 +679,9 @@
                 groupedData[owner].push({ taskName, projectName, status, dateStr, progress, dept });
             });
 
-            // 2. 清空容器，開始繪製分組的 HTML (套用最新 CSS 樣式)
             let html = '';
             for (const owner in groupedData) {
                 const taskCount = groupedData[owner].length;
-                
-                // 動態計算負載徽章
                 let badgeHtml = '';
                 if(taskCount >= 6) {
                     badgeHtml = `<span class="badge-hot" style="margin-left:8px;">🔥 高負載</span>`;
@@ -708,7 +701,6 @@
                 `;
 
                 groupedData[owner].forEach(task => {
-                    // 根據狀態動態調整 class
                     let statusClass = 's-todo';
                     if (task.status.includes('完成')) statusClass = 's-done';
                     else if (task.status.includes('進行')) statusClass = 's-doing';
@@ -756,9 +748,11 @@
                     這通常是因為當前「沙盒限制」或「CORS 權限未開」所引起。
                 </p>
                 <div style="background: white; border-radius: 6px; padding: 16px; font-size: 12px; color: var(--text); line-height: 1.6;">
-                    <b>💡 測試：</b><br>
-                    <a href="${directUrl}" target="_blank" class="diag-btn diag-btn-primary">👉 測試原始 API (新分頁)</a>
+                    <b>💡 測試與修復：</b><br>
+                    1. 確認您的 Google Apps Script 已經發佈為<b>「網頁應用程式」</b>且權限為<b>「所有人」</b>。<br>
+                    2. <a href="${directUrl}" target="_blank" class="diag-btn diag-btn-primary">👉 點此測試原始 API</a> (若出現 JSON 資料即代表正常)<br>
                     <hr style="border: 0; border-top: 1px dashed var(--border); margin: 16px 0;">
+                    如果 API 正常，請嘗試：<br>
                     <button onclick="toggleProxyMode('${group}', '${container.id}')" class="diag-btn diag-btn-secondary">
                         切換為 ${currentFetchMode === 'direct' ? '代理模式' : '直連模式'} 重試
                     </button>
