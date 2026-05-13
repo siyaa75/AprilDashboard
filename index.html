@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎬前製部4月報🎈 | MOONSHINE 2026 APR</title>
+  <title>🎬前製部4月報🎈| MOONSHINE 2026 APR</title>
   <style>
     /* ════════════════════════════════════════
        CSS 變數
@@ -146,7 +146,7 @@
     .main { display: flex; flex: 1; overflow: hidden; }
 
     .tab-panel { display: none; width: 100%; height: 100%; overflow: hidden; }
-    .tab-panel.active { display: flex; }
+    .tab-panel.active { display: flex; flex-direction: column;}
 
     /* 總覽 */
     .overview-scroll { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 18px; }
@@ -292,7 +292,7 @@
       body { height: auto; overflow: auto; }
       #app-wrapper { transform: none !important; width: 100% !important; height: auto !important; overflow: visible; }
       .main { overflow: visible; height: auto; }
-      .tab-panel.active { display: block; height: auto; overflow: visible; }
+      .tab-panel.active { display: flex; height: auto; overflow: visible; }
       .overview-scroll { overflow: visible; height: auto; padding: 12px; }
 
       .split-container { flex-direction: column; height: auto; overflow: visible; }
@@ -327,10 +327,9 @@
     <header class="header">
       <div>
         <h1>🧠 MOONSHINE 前製部 <span style="color:var(--light);font-weight:400;font-size:14px">| 2026 APR</span></h1>
-        <div class="sub"> 4月報更新~ 連結Notion和內網資料夾版 </div>
+        <div class="sub">數據更新：2026/04/30 18:00 (本地快取版)</div>
       </div>
       <div class="header-right">
-        <!-- 💡 頂部導覽列按鈕已被移除，只保留縮放與指標 -->
         <div class="zoom-ctrl">
           <button class="zoom-btn" onclick="changeZoom(-0.1)" title="縮小">A−</button>
           <span class="zoom-val" id="zoom-level">100%</span>
@@ -380,13 +379,27 @@
               </div>
             </div>
           </div>
+          
+          <!-- 新增：外部 Google 行事曆連結按鈕 -->
+          <div class="card" style="display: flex; align-items: center; justify-content: space-between; background: var(--indigo-l); border-color: var(--indigo-m); flex-wrap: wrap; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 32px;">📅</span>
+              <div>
+                <h3 style="font-size: 16px; font-weight: 800; color: var(--indigo); margin-bottom: 2px;">部門行事曆 (2026 APR)</h3>
+                <p style="font-size: 13px; color: var(--slate-600);">點擊右側按鈕前往 Google 日曆，查看完整的部門排程與人員休假資訊。</p>
+              </div>
+            </div>
+            <a href="https://calendar.google.com/calendar/u/0/r/month/2026/4/1" target="_blank" class="folder-btn" style="font-size: 13px; padding: 10px 20px; background: var(--indigo); color: white; border: none; box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4);">
+              🔗 <span style="font-weight: bold;">開啟 Google 行事曆</span>
+            </a>
+          </div>
+
         </div>
       </div>
 
       <!-- TAB 2：設計概念組 -->
       <div id="tab-design" class="tab-panel">
         <div class="split-container">
-          
           <div class="split-left" id="split-design-left">
             <div class="card">
               <div class="card-title" style="font-size:13px">專案來源佔比</div>
@@ -772,13 +785,29 @@
     }
 
     // ════════════════════════════════════════
-    // Tab 切換
+    // Tab 切換 (安全改寫，防止 classList 報錯)
     // ════════════════════════════════════════
     function switchTab(name, btn) {
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + name).classList.add('active');
-      if(btn) btn.classList.add('active');
+      document.querySelectorAll('.tab-panel').forEach(p => {
+        if(p && p.classList) p.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        if(b && b.classList) b.classList.remove('active');
+      });
+      
+      const targetPanel = document.getElementById('tab-' + name);
+      if (targetPanel && targetPanel.classList) {
+        targetPanel.classList.add('active');
+      }
+      
+      if (btn && btn.classList) {
+        btn.classList.add('active');
+      } else {
+        const fallbackBtn = document.getElementById('btn-' + name);
+        if (fallbackBtn && fallbackBtn.classList) {
+            fallbackBtn.classList.add('active');
+        }
+      }
     }
 
     // ════════════════════════════════════════
@@ -788,15 +817,14 @@
 
     function applyZoom() {
       const wrapper = document.getElementById('app-wrapper');
+      if(!wrapper) return;
       
-      // 使用 CSS transform scale 進行完美的等比縮放
       wrapper.style.transform = `scale(${currentZoom})`;
-      
-      // 放大時同步縮小容器寬高計算，完美防止超出瀏覽器邊界
       wrapper.style.width = `calc(100vw / ${currentZoom})`;
       wrapper.style.height = `calc(100vh / ${currentZoom})`;
       
-      document.getElementById('zoom-level').innerText = Math.round(currentZoom * 100) + '%';
+      const zoomLevelEl = document.getElementById('zoom-level');
+      if (zoomLevelEl) zoomLevelEl.innerText = Math.round(currentZoom * 100) + '%';
     }
 
     function changeZoom(delta) {
@@ -804,8 +832,6 @@
       applyZoom();
       localStorage.setItem('moonshine_zoom', currentZoom);
     }
-
-    applyZoom();
 
     // ════════════════════════════════════════
     // 可拖動分隔橫桿 (完美相容 Zoom 座標計算)
@@ -864,9 +890,6 @@
       document.addEventListener('touchend',   () => onEnd());
     }
 
-    initSplitter('resizer-design',   'split-design-left',   'split_design_w');
-    initSplitter('resizer-director', 'split-director-left', 'split_director_w');
-
     // ════════════════════════════════════════
     // 成員資料庫 (供 Modal 使用)
     // ════════════════════════════════════════
@@ -895,33 +918,52 @@
       document.getElementById('modal-avatar').innerText = name.charAt(0);
 
       const badge = document.getElementById('modal-badge');
-      badge.innerText              = data.badgeText;
-      badge.style.backgroundColor  = data.badgeBg;
-      badge.style.color            = data.badgeColor;
-
-      const proj = document.getElementById('modal-projects');
-      if (data.projects) {
-        proj.style.display = 'block';
-        proj.innerHTML     = `<strong>主扛專案：</strong><br>${data.projects}`;
-      } else {
-        proj.style.display = 'none';
+      if (badge) {
+        badge.innerText              = data.badgeText;
+        badge.style.backgroundColor  = data.badgeBg;
+        badge.style.color            = data.badgeColor;
       }
 
-      document.getElementById('modal-green').innerText = data.highlight;
-      document.getElementById('modal-red').innerText   = data.warning;
-      document.getElementById('info-modal').classList.add('active');
+      const proj = document.getElementById('modal-projects');
+      if (proj) {
+        if (data.projects) {
+          proj.style.display = 'block';
+          proj.innerHTML     = `<strong>主扛專案：</strong><br>${data.projects}`;
+        } else {
+          proj.style.display = 'none';
+        }
+      }
+
+      const greenHighlight = document.getElementById('modal-green');
+      if(greenHighlight) greenHighlight.innerText = data.highlight;
+      
+      const redWarning = document.getElementById('modal-red');
+      if(redWarning) redWarning.innerText   = data.warning;
+      
+      const modal = document.getElementById('info-modal');
+      if(modal) modal.classList.add('active');
     }
 
     function closeModal(event) {
       if (!event
           || event.target.classList.contains('modal-overlay')
           || event.target.classList.contains('modal-close')) {
-        document.getElementById('info-modal').classList.remove('active');
+        const modal = document.getElementById('info-modal');
+        if(modal) modal.classList.remove('active');
       }
     }
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') document.getElementById('info-modal').classList.remove('active');
+    // ════════════════════════════════════════
+    // 初始化執行
+    // ════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+      applyZoom();
+      initSplitter('resizer-design',   'split-design-left',   'split_design_w');
+      initSplitter('resizer-director', 'split-director-left', 'split_director_w');
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeModal();
+      });
     });
   </script>
 </body>
