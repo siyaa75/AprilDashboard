@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎬前製部4月報🎈| MOONSHINE 2026 APR</title>
+  <title>🎬前製部4月報🎈 | MOONSHINE 2026 APR</title>
   <style>
     /* ════════════════════════════════════════
        CSS 變數
@@ -380,17 +380,17 @@
             </div>
           </div>
           
-          <!-- 新增：外部 Google 行事曆連結按鈕 -->
+          <!-- 新增：外部 Notion 行事曆連結按鈕 -->
           <div class="card" style="display: flex; align-items: center; justify-content: space-between; background: var(--indigo-l); border-color: var(--indigo-m); flex-wrap: wrap; gap: 16px;">
             <div style="display: flex; align-items: center; gap: 12px;">
               <span style="font-size: 32px;">📅</span>
               <div>
-                <h3 style="font-size: 16px; font-weight: 800; color: var(--indigo); margin-bottom: 2px;">部門行事曆 (2026 APR)</h3>
-                <p style="font-size: 13px; color: var(--slate-600);">點擊右側按鈕前往 Google 日曆，查看完整的部門排程與人員休假資訊。</p>
+                <h3 style="font-size: 16px; font-weight: 800; color: var(--indigo); margin-bottom: 2px;">部門整合行事曆 (Notion Calendar)</h3>
+                <p style="font-size: 13px; color: var(--slate-600);">點擊右側按鈕前往 Notion 行事曆，查看完整的部門排程與多個日曆的整合資訊。</p>
               </div>
             </div>
-            <a href="https://calendar.google.com/calendar/u/0/r/month/2026/4/1" target="_blank" class="folder-btn" style="font-size: 13px; padding: 10px 20px; background: var(--indigo); color: white; border: none; box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4);">
-              🔗 <span style="font-weight: bold;">開啟 Google 行事曆</span>
+            <a href="https://calendar.notion.so/2026/4" target="_blank" class="folder-btn" style="font-size: 13px; padding: 10px 20px; background: var(--indigo); color: white; border: none; box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4);">
+              🔗 <span style="font-weight: bold;">開啟 Notion 行事曆</span>
             </a>
           </div>
 
@@ -789,24 +789,20 @@
     // ════════════════════════════════════════
     function switchTab(name, btn) {
       document.querySelectorAll('.tab-panel').forEach(p => {
-        if(p && p.classList) p.classList.remove('active');
+        p?.classList?.remove('active');
       });
       document.querySelectorAll('.tab-btn').forEach(b => {
-        if(b && b.classList) b.classList.remove('active');
+        b?.classList?.remove('active');
       });
       
       const targetPanel = document.getElementById('tab-' + name);
-      if (targetPanel && targetPanel.classList) {
-        targetPanel.classList.add('active');
-      }
+      targetPanel?.classList?.add('active');
       
-      if (btn && btn.classList) {
-        btn.classList.add('active');
+      if (btn) {
+        btn?.classList?.add('active');
       } else {
         const fallbackBtn = document.getElementById('btn-' + name);
-        if (fallbackBtn && fallbackBtn.classList) {
-            fallbackBtn.classList.add('active');
-        }
+        fallbackBtn?.classList?.add('active');
       }
     }
 
