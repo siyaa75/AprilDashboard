@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎈前製部4月報🎬 | MOONSHINE 2026 APR</title>
+  <title>🎬前製部4月報🎈 | MOONSHINE 2026 APR</title>
   <style>
     /* ════════════════════════════════════════
        CSS 變數
@@ -303,7 +303,6 @@
       .header { padding: 10px 14px; }
       .header h1 { font-size: 15px; }
       .zoom-ctrl { display: none; }
-      .folder-btn span { display: none; }
 
       .overview-grid { grid-template-columns: 1fr !important; }
       .risk-grid { grid-template-columns: 1fr !important; }
@@ -328,17 +327,10 @@
     <header class="header">
       <div>
         <h1>🧠 MOONSHINE 前製部 <span style="color:var(--light);font-weight:400;font-size:14px">| 2026 APR</span></h1>
+        <div class="sub"> 4月報更新~ 連結Notion和內網資料夾版 </div>
       </div>
       <div class="header-right">
-        <div style="display: flex; gap: 6px;">
-          <button class="folder-btn" data-path="U:\_PC\Siya\部門\2. 設計\2026_設計概念組月報\4月" onclick="copyPathToClipboard(this)" title="點擊複製路徑_在內網貼上">
-            📋 <span>概念資料夾</span>
-          </button>
-          <button class="folder-btn" data-path="U:\_PC\Siya\部門\1. 導演\2026_導演組月報\260430_導演組4月報" onclick="copyPathToClipboard(this)" title="點擊複製路徑_在內網貼上">
-            📋 <span>導演資料夾</span>
-          </button>
-        </div>
-
+        <!-- 💡 頂部導覽列按鈕已被移除，只保留縮放與指標 -->
         <div class="zoom-ctrl">
           <button class="zoom-btn" onclick="changeZoom(-0.1)" title="縮小">A−</button>
           <span class="zoom-val" id="zoom-level">100%</span>
@@ -391,12 +383,11 @@
         </div>
       </div>
 
-      <!-- TAB 2：設計概念組 (硬編碼) -->
+      <!-- TAB 2：設計概念組 -->
       <div id="tab-design" class="tab-panel">
         <div class="split-container">
           
           <div class="split-left" id="split-design-left">
-            <!-- 圖表 1：設計組 來源佔比 -->
             <div class="card">
               <div class="card-title" style="font-size:13px">專案來源佔比</div>
               <div class="chart-wrap">
@@ -411,7 +402,6 @@
                 </ul>
               </div>
             </div>
-            <!-- 圖表 2：設計組 類型分佈 -->
             <div class="card">
               <div class="card-title" style="font-size:13px">專案類型分佈</div>
               <div class="chart-wrap">
@@ -424,6 +414,17 @@
                   <li class="legend-item"><span class="dot" style="background:var(--sky)"></span>廣告 (2) 16.7%</li>
                   <li class="legend-item"><span class="dot" style="background:var(--amber)"></span>角色動畫 (1) 8.3%</li>
                 </ul>
+              </div>
+            </div>
+
+            <!-- 💡 將概念組的複製按鈕放在左側欄位下方 -->
+            <div class="card">
+              <div class="card-title" style="font-size:13px">📁 專案目錄</div>
+              <button class="folder-btn" style="width:100%; justify-content:center; padding:10px; margin-bottom:8px; font-size:14px; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.02);" data-path="U:\_PC\Siya\部門\2. 設計\2026_設計概念組月報\4月" onclick="copyPathToClipboard(this)">
+                📋 <span style="font-weight: bold; color: var(--indigo);">複製概念組資料夾路徑</span>
+              </button>
+              <div style="font-size: 11px; color: var(--muted); word-break: break-all; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px dashed #cbd5e1; line-height: 1.4;">
+                U:\_PC\Siya\部門\2. 設計\2026_設計概念組月報\4月
               </div>
             </div>
           </div>
@@ -608,6 +609,17 @@
               </ul>
             </div>
           </div>
+
+          <!-- 💡 將導演組的複製按鈕放在左側欄位下方 -->
+          <div class="card">
+            <div class="card-title" style="font-size:13px">📁 專案目錄</div>
+            <button class="folder-btn" style="width:100%; justify-content:center; padding:10px; margin-bottom:8px; font-size:14px; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.02);" data-path="U:\_PC\Siya\部門\1. 導演\2026_導演組月報\260430_導演組4月報" onclick="copyPathToClipboard(this)">
+              📋 <span style="font-weight: bold; color: var(--indigo);">複製導演組資料夾路徑</span>
+            </button>
+            <div style="font-size: 11px; color: var(--muted); word-break: break-all; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px dashed #cbd5e1; line-height: 1.4;">
+              U:\_PC\Siya\部門\1. 導演\2026_導演組月報\260430_導演組4月報
+            </div>
+          </div>
         </div>
 
         <div class="resizer" id="resizer-director" title="拖動調整左右比例"></div>
@@ -635,7 +647,7 @@
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3478 - Rog_20thAnniversaryLineup</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>【 Teaser 1 - LOGO篇 】<br>- Teaser Acopy : 5/4<br>- Motion : 5/7<br>- Teaser Final : 5/8<br><br>【 Teaser 2 - 年代篇 】<br>- Teaser Acopy : 5/12<br>- Motion : 5/19<br>- Teaser Final : 5/20</div></div>
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3466 - ROG_GC701 PC Controll</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>- SF2 : 5/7<br>- 爆炸圖+PV Previz : 5/8<br>- 網頁素材 : 5/15<br>- Teaser Acopy : 5/18<br>- PV Previz : 5/21<br>- Teaser Bcopy : 5/25<br>- PV SF1 : 5/27<br>- Reveal Acopy : 5/28</div></div>
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3422 - Garena新產品PV</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 動畫部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 角色動畫</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>- 提供Animation / Styleframe : 5/7<br>- Animation 修改回覆 : 5/11<br>- Acopy : 5/21<br>- Acopy 回覆 : 5/28</div></div>
-                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3395 - Msi_TitanDragonEdition</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-doing">進行中</span></div></div>
+                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3395 - Msi_TitanDragonEdition</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>動態製作跟動畫師討論反饋</div></div>
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3135 - RogBrandVideo2026</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 動畫部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 投影</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>5/8 正片Acopy串檔<br>5/11 短版30秒剪輯一版<br>5/18 正片Acopy更新串檔<br>5/25 正片Bcopy+30秒版本更新<br>6/1 Final出檔</div></div>
               </div>
             </div>
@@ -649,14 +661,13 @@
                 <span class="owner-count">7 項目</span>
               </div>
               <div class="task-items">
-                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3516 - RogT1聯名顯卡</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 前製部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-todo">未開始</span></div></div>
+                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3516 - RogT1聯名顯卡</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 前製部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-todo">未開始</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>下周剪輯MB</div></div>
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3517 - 星星電力形象影片</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 前製部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 廣告</span></div></div><span class="status s-pitch">提案中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>• 5/19 提案</div></div>
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3448 - Msi_CoreliquidE15</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>- Bcopy : 5/7<br>- Final : 5/14</div></div>
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3447 - Msi_Maestro900R</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>- Bcopy : 5/7<br>- Final : 5/14</div></div>
                 <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3446 - Msi_MegSeries</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 產品</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>- Bcopy : 5/7<br>- Final : 5/14</div></div>
-                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3427 - 地球館-CP4</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 動畫部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 投影</span></div></div><span class="status s-doing">進行中</span></div></div>
-                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3255 - TASA_太空中心簡介影片</div><div class="task-meta"><span>📅 Final 2026/6/19</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>- 拍攝定剪 : 5/8<br>- TC單張定Tone : 5/13<br>- ACopy : 5/22</div></div>
-                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3058 - Delta_IntroductionVideo</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 廣告</span></div></div><span class="status s-doing">進行中</span></div></div>
+                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3427 - 地球館-CP4</div><div class="task-meta"><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 動畫部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 投影</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>陸續確認中</div></div>
+                <div class="task-card"><div class="task-top"><div class="task-info"><div class="task-project">↗ P3255 - TASA_太空中心簡介影片</div><div class="task-meta"><span>📅 Final 2026/6/19</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏢 廣告部</span><span style="background:var(--slate-100); padding: 1px 6px; border-radius: 4px; color: var(--slate-500)">🏷️ 廣告</span></div></div><span class="status s-doing">進行中</span></div><div class="task-note"><span class="note-label">💬 本月：</span><br>- 拍攝定剪 : 5/8<br>- TC單張定Tone : 5/13<br>- ACopy : 5/22</div></div>
               </div>
             </div>
 
